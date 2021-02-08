@@ -48,18 +48,21 @@ public class Main {
 	public static boolean ReadOneFile(File f) {
 		String currentLine = "";
 		String firstLine = "";
+		if (f != null) {
 
-		File file = new File(f.getAbsolutePath());
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(file));
+			File file = new File(f.getAbsolutePath());
+			try {
+				BufferedReader br = new BufferedReader(new FileReader(file));
 
-			if ((currentLine = br.readLine()) != null) {
-				firstLine = currentLine;
-				String[] str = firstLine.split("&");
-				return str[5].substring(0, 3).contains("l0S") ? true : false;
+				if ((currentLine = br.readLine()) != null) {
+					firstLine = currentLine;
+					String[] str = firstLine.split("&");
+					return str[5].substring(0, 3).contains("l0S") ? true : false;
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
+			
 		}
 		return false;
 
